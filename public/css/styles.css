@@ -120,7 +120,7 @@ h1 {
   color: var(--text-color);
   text-decoration: none;
   display: block;
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
   border-radius: 4px;
   transition: all 0.2s ease;
 }
@@ -135,26 +135,71 @@ h1 {
 .philosopher-item {
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.philosopher-item:hover {
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .philosopher-logo-container {
-  width: 24px;
-  height: 24px;
-  margin-right: 0.5rem;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: #f0f0f0;
+  background-color: #8B4513;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .philosopher-logo {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  background-color: #f0f0f0;
+  object-fit: cover;
+  background-color: #8B4513;
+}
+
+.philosopher-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.philosopher-name {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 0.875rem;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.philosopher-publication {
+  font-size: 0.8rem;
+  color: #666;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  line-height: 1.2;
+  word-wrap: break-word;
+  hyphens: auto;
+  margin: 0;
+  padding: 0;
+  margin-top: 1px;
+  display: block;
+}
+
+.philosopher-publication:hover {
+  color: var(--accent-color);
+  text-decoration: underline;
 }
 
 .post-card {
@@ -162,18 +207,24 @@ h1 {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: var(--card-shadow);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 }
 
 .post-image-container {
-  flex: 0 0 120px;
-  margin-right: 1.5rem;
+  flex: 0 0 140px;
+  margin-right: 1rem;
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+  margin-left: -1rem;
 }
 
 .post-image-container a {
   display: block;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
@@ -198,45 +249,48 @@ h1 {
 
 .post-content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
 }
 
 .post-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .post-title {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  /* margin-bottom: 0.5rem; */
+  line-height: 1.3;
+  font-weight: 600;
 }
 
 .post-title a {
-
   color: var(--primary-color);
   text-decoration: none;
 }
 
 .post-title a:hover {
-
   color: var(--accent-color);
 }
 
 .post-subtitle {
-
-
   color: var(--light-text);
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  flex-grow: 1;
 }
 
 .post-meta {
-  font-size: 0.875rem;
-
+  font-size: 0.8rem;
   color: var(--light-text);
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid var(--border-color);
-  padding-top: 0.75rem;
+  align-items: center;
+  margin-top: auto;
 }
 
 .loading {

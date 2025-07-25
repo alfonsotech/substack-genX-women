@@ -110,9 +110,14 @@ function renderPhilosophers() {
             onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 fill=%22%23f0f0f0%22 /><text x=%2212%22 y=%2216%22 font-size=%2214%22 text-anchor=%22middle%22 fill=%22%23333%22>${initial}</text></svg>'"
           >
         </div>
-        <a href="${philosopher.substackUrl}" target="_blank" data-id="${philosopher.id}">
-          ${philosopher.name}
-        </a>
+        <div class="philosopher-info">
+          <div class="philosopher-name" data-id="${philosopher.id}">
+            ${philosopher.name}
+          </div>
+          <a href="${philosopher.substackUrl}" target="_blank" class="philosopher-publication">
+            ${philosopher.publicationName}
+          </a>
+        </div>
       </li>
     `;
     })
@@ -218,13 +223,8 @@ function renderPosts(posts, clearExisting = false) {
             ${
               post.coverImage
                 ? `<img src="${post.coverImage}" alt="${post.title}" class="post-image" 
-                   onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%2290%22 viewBox=%220 0 120 90%22><rect width=%22120%22 height=%2290%22 fill=%22%23f0f0f0%22 /><text x=%2260%22 y=%2245%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23333%22>${initial}</text></svg>'">`
-                : `<div class="post-image-placeholder">
-                 <svg width="120" height="90" viewBox="0 0 120 90">
-                   <rect width="120" height="90" fill="#f0f0f0" />
-                   <text x="60" y="45" font-size="24" text-anchor="middle" fill="#333">${initial}</text>
-                 </svg>
-               </div>`
+                   onerror="this.onerror=null; this.src='/placeholder-image.jpg'">`
+                : `<img src="/placeholder-image.jpg" alt="${post.title}" class="post-image">`
             }
           </a>
         </div>
