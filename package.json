@@ -1,0 +1,33 @@
+{
+  "name": "substack-philosophers-alliance",
+  "version": "1.0.0",
+  "description": "A minimalist content aggregator for philosophy-focused Substack publications",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "build": "mkdir -p netlify/functions && cp -r src netlify/functions/"
+  },
+  "keywords": [
+    "substack",
+    "philosophy",
+    "rss",
+    "aggregator"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.10.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "fs-extra": "^11.1.1",
+    "mongodb": "^6.18.0",
+    "node-cron": "^3.0.2",
+    "rss-parser": "^3.13.0",
+    "serverless-http": "^3.2.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "netlify-cli": "^22.2.1",
+    "nodemon": "^2.0.22"
+  }
+}

@@ -1,0 +1,198 @@
+[
+  {
+    "id": "annieridout",
+    "name": "Annie Ridout",
+    "publicationName": "Annie Ridout",
+    "substackUrl": "https://annieridout.substack.com",
+    "rssUrl": "https://annieridout.substack.com/feed"
+  },
+  {
+    "id": "desireebrown2",
+    "name": "Desiree A Brown",
+    "publicationName": "Desiree A Brown",
+    "substackUrl": "https://desireeabrown.substack.com",
+    "rssUrl": "https://desireeabrown.substack.com/feed"
+  },
+  {
+    "id": "drdionnemahaffey",
+    "name": "Dr. Dionne Mahaffey",
+    "publicationName": "Dr. Dionne Mahaffey",
+    "substackUrl": "https://drdionnemahaffey.substack.com",
+    "rssUrl": "https://drdionnemahaffey.substack.com/feed"
+  },
+  {
+    "id": "rentfreewithella",
+    "name": "Ella Thirsty",
+    "publicationName": "Ella Thirsty",
+    "substackUrl": "https://ellathirsty.substack.com",
+    "rssUrl": "https://ellathirsty.substack.com/feed"
+  },
+  {
+    "id": "forevers",
+    "name": "Erin Greenawald and Samantha Amberg",
+    "publicationName": "Forevers",
+    "substackUrl": "https://forevers.substack.com",
+    "rssUrl": "https://forevers.substack.com/feed"
+  },
+  {
+    "id": "genx",
+    "name": "Jennifer",
+    "publicationName": "Gen X",
+    "substackUrl": "https://genx.substack.com",
+    "rssUrl": "https://genx.substack.com/feed"
+  },
+  {
+    "id": "grouphug",
+    "name": "Elise Granata",
+    "publicationName": "Group Hug",
+    "substackUrl": "https://grouphug.substack.com",
+    "rssUrl": "https://grouphug.substack.com/feed"
+  },
+  {
+    "id": "herhandmadehustle",
+    "name": "Joanne Pearce",
+    "publicationName": "Her Handmade Hustle",
+    "substackUrl": "https://herhandmadehustle.substack.com",
+    "rssUrl": "https://herhandmadehustle.substack.com/feed"
+  },
+  {
+    "id": "laidofflife",
+    "name": "Ami Angelowicz",
+    "publicationName": "Laid Off Life",
+    "substackUrl": "https://laidofflife.substack.com",
+    "rssUrl": "https://laidofflife.substack.com/feed"
+  },
+  {
+    "id": "midstack",
+    "name": "Jessica Smock and Steph Sprenger",
+    "publicationName": "Midstack",
+    "substackUrl": "https://midstack.substack.com",
+    "rssUrl": "https://midstack.substack.com/feed"
+  },
+  {
+    "id": "modernstrength",
+    "name": "Maura J. Zimmer",
+    "publicationName": "Modern Strength",
+    "substackUrl": "https://modernstrength.substack.com",
+    "rssUrl": "https://modernstrength.substack.com/feed"
+  },
+  {
+    "id": "msmiddler",
+    "name": "Pam Johnston",
+    "publicationName": "Ms. Middler",
+    "substackUrl": "https://msmiddler.substack.com",
+    "rssUrl": "https://msmiddler.substack.com/feed"
+  },
+  {
+    "id": "postcardsbyelle",
+    "name": "Elle",
+    "publicationName": "Postcards by Elle",
+    "substackUrl": "https://postcardsbyelle.substack.com",
+    "rssUrl": "https://postcardsbyelle.substack.com/feed"
+  },
+  {
+    "id": "casandracampbell",
+    "name": "Casandra Campbell",
+    "publicationName": "Really Good Business Ideas",
+    "substackUrl": "https://www.reallygoodbusinessideas.com",
+    "rssUrl": "https://www.reallygoodbusinessideas.com/feed"
+  },
+  {
+    "id": "reinventionadventures",
+    "name": "Marilia Coutinho",
+    "publicationName": "Reinvention Adventures",
+    "substackUrl": "https://reinventionadventures.substack.com",
+    "rssUrl": "https://reinventionadventures.substack.com/feed"
+  },
+  {
+    "id": "serenamiraasta",
+    "name": "Serena Miraasta",
+    "publicationName": "Serena Miraasta",
+    "substackUrl": "https://serenamiraasta.substack.com",
+    "rssUrl": "https://serenamiraasta.substack.com/feed"
+  },
+  {
+    "id": "sharonnewsom",
+    "name": "Sharon Newsom",
+    "publicationName": "Sharon Newsom",
+    "substackUrl": "https://sharonnewsom.substack.com",
+    "rssUrl": "https://sharonnewsom.substack.com/feed"
+  },
+  {
+    "id": "smartissexy",
+    "name": "Smart is Sexy",
+    "publicationName": "Smart is Sexy",
+    "substackUrl": "https://smartissexy.substack.com",
+    "rssUrl": "https://smartissexy.substack.com/feed"
+  },
+  {
+    "id": "successcoachsa",
+    "name": "Eva M. Fernandez, LMSW",
+    "publicationName": "Success Coach SA",
+    "substackUrl": "https://successcoachsa.substack.com",
+    "rssUrl": "https://successcoachsa.substack.com/feed"
+  },
+  {
+    "id": "thegoodspace",
+    "name": "Francesca Phillips",
+    "publicationName": "The Good Space",
+    "substackUrl": "https://thegoodspace.substack.com",
+    "rssUrl": "https://thegoodspace.substack.com/feed"
+  },
+  {
+    "id": "emmagannon",
+    "name": "Emma Gannon",
+    "publicationName": "The Hyphen",
+    "substackUrl": "https://thehyphen.substack.com",
+    "rssUrl": "https://thehyphen.substack.com/feed"
+  },
+  {
+    "id": "daniellejwilkie",
+    "name": "Danielle Wilkie",
+    "publicationName": "The Midlife Sabbatical",
+    "substackUrl": "https://themidlifesabbatical.substack.com",
+    "rssUrl": "https://themidlifesabbatical.substack.com/feed"
+  },
+  {
+    "id": "themidst",
+    "name": "Lauria Locsmondy, Amy Cuevas Schroeder, and Tiffany N ",
+    "publicationName": "The Midst",
+    "substackUrl": "https://themidst.substack.com",
+    "rssUrl": "https://themidst.substack.com/feed"
+  },
+  {
+    "id": "thepeoplescommunity",
+    "name": "The People's Community",
+    "publicationName": "The People's Community",
+    "substackUrl": "https://thepeoplescommunity.substack.com",
+    "rssUrl": "https://thepeoplescommunity.substack.com/feed"
+  },
+  {
+    "id": "theshiftwithsambaker",
+    "name": "Sam Baker",
+    "publicationName": "The Shift with Sam Baker",
+    "substackUrl": "https://theshiftwithsambaker.substack.com",
+    "rssUrl": "https://theshiftwithsambaker.substack.com/feed"
+  },
+  {
+    "id": "carrieloranger1",
+    "name": "Carrie Loranger",
+    "publicationName": "Thrive with Carrie",
+    "substackUrl": "https://thrivewithcarrie.substack.com",
+    "rssUrl": "https://thrivewithcarrie.substack.com/feed"
+  },
+  {
+    "id": "vanessanwright",
+    "name": "Vanessa Novissimo Wright",
+    "publicationName": "Vanessa Novissimo Wright",
+    "substackUrl": "https://vanessanovissimowright.substack.com",
+    "rssUrl": "https://vanessanovissimowright.substack.com/feed"
+  },
+  {
+    "id": "workmattersnow",
+    "name": "Mona Mona and Lola",
+    "publicationName": "Work Matters Now",
+    "substackUrl": "https://workmattersnow.substack.com",
+    "rssUrl": "https://workmattersnow.substack.com/feed"
+  }
+]

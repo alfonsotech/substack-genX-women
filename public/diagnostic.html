@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RSS Feed Diagnostic</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1,
+      h2,
+      h3 {
+        margin-top: 20px;
+      }
+      pre {
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+      .philosopher-select {
+        margin-bottom: 20px;
+      }
+      .image-preview {
+        max-width: 300px;
+        max-height: 200px;
+        border: 1px solid #ddd;
+        margin: 10px 0;
+      }
+      .image-section {
+        margin: 20px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>RSS Feed Diagnostic Tool</h1>
+
+    <div class="philosopher-select">
+      <label for="philosopher">Select a philosopher:</label>
+      <select id="philosopher">
+        <option value="">-- Select --</option>
+      </select>
+      <button id="run-diagnostic">Run Diagnostic</button>
+    </div>
+
+    <div id="results">
+      <p>Select a philosopher and run the diagnostic to see results.</p>
+    </div>
+
+    <script>
+      // Fetch philosophers list
+      async function fetchPhilosophers() {
+        const response = await fetch("/api/philosophers");
+        const philosophers = await response.json();
+
+        const select = document.getElementById("philosopher");
+        philosophers.forEach((p) => {
+          const option = document.createElement("option");
+          option.value = p.id;
+          option.textContent = p.name;
+          select.appendChild(option);
+        });
+      }
+
+      // Run diagnostic
+      async function runDiagnostic(philosopherId) {
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = "<p>Loading diagnostic data...</p>";
+
+        try {
+          const response = await fetch(`/api/diagnostic/${philosopherId}`);
+          const data = await response.json();
+
+          let html = `
+          <h2>Diagnostic Results for ${data.philosopher.name}</h2>
+          <p><strong>Feed Title:</strong> ${data.feedTitle}</p>
+          <p><strong>Items Count:</strong> ${data.itemCount}</p>
+          
+          <div class="image-section">
+            <h3>Image Locations</h3>
+            
+            <h4>Feed Logo</h4>
+            ${
+              data.imageLocations.feedImage
+                ? `<p>Found feed logo: <a href="${data.imageLocations.feedImage}" target="_blank">${data.imageLocations.feedImage}</a></p>
+               <img src="${data.imageLocations.feedImage}" alt="Feed Logo" class="image-preview">`
+                : "<p>No feed logo found</p>"
+            }
+            
+            <h4>First Item Content Image</h4>
+            ${
+              data.imageLocations.firstItemContent
+                ? `<p>Found image in content: <a href="${data.imageLocations.firstItemContent[1]}" target="_blank">${data.imageLocations.firstItemContent[1]}</a></p>
+               <img src="${data.imageLocations.firstItemContent[1]}" alt="Content Image" class="image-preview">`
+                : "<p>No image found in content</p>"
+            }
+            
+            <h4>First Item Description Image</h4>
+            ${
+              data.imageLocations.firstItemDescription
+                ? `<p>Found image in description: <a href="${data.imageLocations.firstItemDescription[1]}" target="_blank">${data.imageLocations.firstItemDescription[1]}</a></p>
+               <img src="${data.imageLocations.firstItemDescription[1]}" alt="Description Image" class="image-preview">`
+                : "<p>No image found in description</p>"
+            }
+            
+            <h4>Media Content</h4>
+            <pre>${JSON.stringify(
+              data.imageLocations.firstItemMedia,
+              null,
+              2
+            )}</pre>
+            
+            <h4>Enclosure</h4>
+            <pre>${JSON.stringify(
+              data.imageLocations.firstItemEnclosure,
+              null,
+              2
+            )}</pre>
+          </div>
+          
+          <h3>First Item Sample</h3>
+          <p><strong>Title:</strong> ${data.firstItemSample.title}</p>
+          <p><strong>Link:</strong> <a href="${
+            data.firstItemSample.link
+          }" target="_blank">${data.firstItemSample.link}</a></p>
+          
+          <h4>Content Snippet</h4>
+          <pre>${data.firstItemSample.contentSnippet || "No content"}</pre>
+          
+          <h4>Description Snippet</h4>
+          <pre>${
+            data.firstItemSample.descriptionSnippet || "No description"
+          }</pre>
+        `;
+
+          resultsDiv.innerHTML = html;
+        } catch (error) {
+          resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+        }
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchPhilosophers();
+
+        document
+          .getElementById("run-diagnostic")
+          .addEventListener("click", () => {
+            const philosopherId = document.getElementById("philosopher").value;
+            if (philosopherId) {
+              runDiagnostic(philosopherId);
+            } else {
+              alert("Please select a philosopher first");
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
