@@ -6,6 +6,7 @@ const fs = require("fs-extra");
 const http = require("http");
 const socketIo = require("socket.io");
 const rssService = require("./services/rssService");
+const dbService = require("./services/dbService");
 
 const app = express();
 const PORT = process.env.PORT || 3005; // Make sure this is defined
@@ -35,44 +36,55 @@ try {
 }
 
 // API Routes
-app.get("/api/philosophers", (req, res) => {
-  res.json(philosophers);
+app.get("/api/philosophers", async (req, res) => {
+  try {
+    const philosophers = await dbService.getPhilosophers();
+    res.json(philosophers);
+  } catch (error) {
+    console.error("Error fetching philosophers:", error);
+    res.status(500).json({ error: "Failed to fetch philosophers" });
+  }
 });
 
-app.get("/api/posts", (req, res) => {
-  const { search, page = 1, limit = 10 } = req.query;
-  const pageNum = parseInt(page);
-  const limitNum = parseInt(limit);
+app.get("/api/posts", async (req, res) => {
+  try {
+    const { search, page = 1, limit = 10 } = req.query;
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit);
 
-  let posts = rssService.getAllPosts();
+    let posts = await dbService.getPosts();
 
-  // Apply search filter if provided
-  if (search) {
-    const searchLower = search.toLowerCase();
-    posts = posts.filter(
-      (post) =>
-        post.title.toLowerCase().includes(searchLower) ||
-        post.subtitle.toLowerCase().includes(searchLower) ||
-        post.author.toLowerCase().includes(searchLower)
-    );
+    // Apply search filter if provided
+    if (search) {
+      const searchLower = search.toLowerCase();
+      posts = posts.filter(
+        (post) =>
+          post.title.toLowerCase().includes(searchLower) ||
+          (post.subtitle && post.subtitle.toLowerCase().includes(searchLower)) ||
+          post.author.toLowerCase().includes(searchLower)
+      );
+    }
+
+    // Calculate total pages
+    const totalPosts = posts.length;
+    const totalPages = Math.ceil(totalPosts / limitNum);
+
+    // Apply pagination
+    const startIndex = (pageNum - 1) * limitNum;
+    const endIndex = pageNum * limitNum;
+    const paginatedPosts = posts.slice(startIndex, endIndex);
+
+    res.json({
+      total: totalPosts,
+      page: pageNum,
+      limit: limitNum,
+      hasMore: pageNum < totalPages,
+      posts: paginatedPosts,
+    });
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).json({ error: "Failed to fetch posts" });
   }
-
-  // Calculate total pages
-  const totalPosts = posts.length;
-  const totalPages = Math.ceil(totalPosts / limitNum);
-
-  // Apply pagination
-  const startIndex = (pageNum - 1) * limitNum;
-  const endIndex = pageNum * limitNum;
-  const paginatedPosts = posts.slice(startIndex, endIndex);
-
-  res.json({
-    total: totalPosts,
-    page: pageNum,
-    limit: limitNum,
-    hasMore: pageNum < totalPages,
-    posts: paginatedPosts,
-  });
 });
 
 app.get("/api/philosophers/:id/posts", (req, res) => {
