@@ -94,16 +94,24 @@ app.get("/api/philosophers/:id/posts", (req, res) => {
 });
 
 // Add this endpoint to get a philosopher's logo
-app.get("/api/philosophers/:id/logo", (req, res) => {
-  const { id } = req.params;
-  const logoUrl = rssService.getPhilosopherLogo(id);
-
-  if (logoUrl) {
-    // Redirect to the actual logo URL
-    res.redirect(logoUrl);
-  } else {
-    // Instead of redirecting, send a 404 status
-    res.status(404).json({ error: "Logo not found" });
+app.get("/api/philosophers/:id/logo", async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // Get logo URL from database (from any post by this philosopher)
+    const posts = await dbService.getPosts();
+    const philosopherPost = posts.find(post => post.philosopherId === id);
+    
+    if (philosopherPost && philosopherPost.logoUrl) {
+      // Redirect to the actual logo URL
+      res.redirect(philosopherPost.logoUrl);
+    } else {
+      // Fallback to placeholder image
+      res.redirect('/placeholder-image.jpg');
+    }
+  } catch (error) {
+    console.error("Error fetching logo:", error);
+    res.redirect('/placeholder-image.jpg');
   }
 });
 
