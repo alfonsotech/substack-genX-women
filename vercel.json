@@ -22,5 +22,11 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/refresh-feeds",
+      "schedule": "0 */12 * * *"
+    }
+  ]
 }
