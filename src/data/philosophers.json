@@ -21,11 +21,25 @@
     "rssUrl": "https://annieridout.substack.com/feed"
   },
   {
+    "id": "asmallbusinesslife",
+    "name": "Anna Ludwinowski",
+    "publicationName": "The Business CLARITY Coach",
+    "substackUrl": "https://asmallbusinesslife.substack.com",
+    "rssUrl": "https://asmallbusinesslife.substack.com/feed"
+  },
+  {
     "id": "successcoachsa",
     "name": "Eva M. Fernandez, LMSW",
     "publicationName": "Compassionate Disruptor",
     "substackUrl": "https://successcoachsa.substack.com",
     "rssUrl": "https://successcoachsa.substack.com/feed"
+  },
+    {
+    "id": "iprofessionalcoaching",
+    "name": "Margaret Williams, MS, ACC",
+    "publicationName": "The Empowered Leader",
+    "substackUrl": "https://substack.iprofessionalcoaching.com",
+    "rssUrl": "https://substack.iprofessionalcoaching.com/feed"
   },
   {
     "id": "vanessanwright",
@@ -47,6 +61,13 @@
     "publicationName": "Gen X",
     "substackUrl": "https://genx.substack.com",
     "rssUrl": "https://genx.substack.com/feed"
+  },
+  {
+    "id": "getuntrapped",
+    "name": "Shannon D. Smith, CPTD",
+    "publicationName": "Get Untrapped",
+    "substackUrl": "https://getuntrapped.substack.com",
+    "rssUrl": "https://getuntrapped.substack.com/feed"
   },
   {
     "id": "grouphug",
@@ -202,4 +223,11 @@
     "substackUrl": "https://workmattersnow.substack.com",
     "rssUrl": "https://workmattersnow.substack.com/feed"
   }
+  // {
+  //   "id": "",
+  //   "name": "",
+  //   "publicationName": "",
+  //   "substackUrl": "",
+  //   "rssUrl": "feed"
+  // }
 ]
