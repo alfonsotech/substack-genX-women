@@ -15,8 +15,8 @@ module.exports = async (req, res) => {
     const pageNum = parseInt(page);
     const limitNum = parseInt(limit);
 
-    // Get all posts from RSS service
-    let allPosts = rssService.getAllPosts();
+    // Get all posts from RSS service (now async)
+    let allPosts = await rssService.getAllPosts();
     
     console.log(`Found ${allPosts.length} total posts`);
     

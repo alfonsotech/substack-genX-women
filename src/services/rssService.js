@@ -1,6 +1,7 @@
 const RssParser = require("rss-parser");
 const fs = require("fs-extra");
 const path = require("path");
+const { connectToDatabase } = require("../../lib/mongodb");
 
 // Configure the RSS parser to capture enclosure tags
 const parser = new RssParser({
@@ -105,36 +106,39 @@ function extractImage(item) {
   return null;
 }
 
-// Function to save posts to storage
-function savePosts(philosopherId, posts) {
+// Function to save posts to MongoDB
+async function savePosts(philosopherId, posts) {
   try {
-    // Ensure the cache directory exists
-    fs.ensureDirSync(CACHE_DIR);
-
-    // Save the posts for this philosopher
-    const cacheFile = path.join(CACHE_DIR, `${philosopherId}.json`);
-    fs.writeJsonSync(cacheFile, posts);
-
-    // Update the all-posts file
-    const allPosts = getAllPosts();
+    const db = await connectToDatabase();
+    const postsCollection = db.collection("posts");
 
     // Remove existing posts from this philosopher
-    const filteredPosts = allPosts.filter(
-      (post) => post.philosopherId !== philosopherId
-    );
+    await postsCollection.deleteMany({ philosopherId });
 
-    // Add the new posts
-    const updatedPosts = [...filteredPosts, ...posts];
+    // Insert new posts if any exist
+    if (posts.length > 0) {
+      // Add philosopherId to each post and ensure uniqueness
+      const postsWithId = posts.map(post => ({
+        ...post,
+        philosopherId,
+        _id: post.id, // Use the RSS item id as MongoDB _id for uniqueness
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }));
 
-    // Sort by publish date (newest first)
-    updatedPosts.sort(
-      (a, b) => new Date(b.publishDate) - new Date(a.publishDate)
-    );
+      // Use upsert to handle potential duplicates
+      const bulkOps = postsWithId.map(post => ({
+        updateOne: {
+          filter: { _id: post._id },
+          update: { $set: post },
+          upsert: true
+        }
+      }));
 
-    // Save the updated all-posts file
-    fs.writeJsonSync(POSTS_FILE, updatedPosts);
+      await postsCollection.bulkWrite(bulkOps);
+    }
 
-    console.log(`Saved ${posts.length} posts for ${philosopherId}`);
+    console.log(`Saved ${posts.length} posts for ${philosopherId} to MongoDB`);
   } catch (error) {
     console.error(`Error saving posts for ${philosopherId}:`, error);
   }
@@ -254,8 +258,8 @@ async function refreshAllFeeds(philosophers) {
           latestPostsTimestamps[philosopher.id] = latestPostDate;
         }
 
-        // Save the posts to your storage
-        savePosts(philosopher.id, posts);
+        // Save the posts to MongoDB
+        await savePosts(philosopher.id, posts);
       }
     } catch (error) {
       console.error(`Error refreshing feed for ${philosopher.name}:`, error);
@@ -288,32 +292,40 @@ function emitNewContentEvent(newPosts) {
   global.latestNewPosts = newPosts;
 }
 
-// Get all posts
-function getAllPosts() {
-  if (fs.existsSync(POSTS_FILE)) {
-    try {
-      return fs.readJsonSync(POSTS_FILE);
-    } catch (error) {
-      console.error("Error reading posts file:", error);
-      return [];
-    }
+// Get all posts from MongoDB
+async function getAllPosts() {
+  try {
+    const db = await connectToDatabase();
+    const postsCollection = db.collection("posts");
+    
+    const posts = await postsCollection
+      .find({})
+      .sort({ publishDate: -1 })
+      .toArray();
+    
+    return posts;
+  } catch (error) {
+    console.error("Error reading posts from MongoDB:", error);
+    return [];
   }
-  return [];
 }
 
-// Get posts for a specific philosopher
-function getPostsByPhilosopher(philosopherId) {
-  const cacheFile = path.join(CACHE_DIR, `${philosopherId}.json`);
-
-  if (fs.existsSync(cacheFile)) {
-    try {
-      return fs.readJsonSync(cacheFile);
-    } catch (error) {
-      console.error(`Error reading posts for ${philosopherId}:`, error);
-      return [];
-    }
+// Get posts for a specific philosopher from MongoDB
+async function getPostsByPhilosopher(philosopherId) {
+  try {
+    const db = await connectToDatabase();
+    const postsCollection = db.collection("posts");
+    
+    const posts = await postsCollection
+      .find({ philosopherId })
+      .sort({ publishDate: -1 })
+      .toArray();
+    
+    return posts;
+  } catch (error) {
+    console.error(`Error reading posts for ${philosopherId} from MongoDB:`, error);
+    return [];
   }
-  return [];
 }
 
 module.exports = {

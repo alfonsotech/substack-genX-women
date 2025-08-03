@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
   const { id } = req.query;
   
   try {
-    const posts = rssService.getPostsByPhilosopher(id);
+    const posts = await rssService.getPostsByPhilosopher(id);
     res.status(200).json(posts);
   } catch (error) {
     console.error(`Error fetching posts for philosopher ${id}:`, error);
