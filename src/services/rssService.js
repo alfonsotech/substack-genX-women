@@ -14,13 +14,15 @@ const parser = new RssParser({
   },
 });
 
-// Define the cache directories - use /tmp for Netlify Functions
+// Define the cache directories - use /tmp for serverless environments (Netlify/Vercel)
 const isNetlify = process.env.NETLIFY === "true";
-const CACHE_DIR = isNetlify
+const isVercel = process.env.VERCEL === "1";
+const isServerless = isNetlify || isVercel;
+let CACHE_DIR = isServerless
   ? path.join("/tmp", "cache")
   : path.join(__dirname, "../data/cache");
 
-const POSTS_FILE = path.join(CACHE_DIR, "all-posts.json");
+let POSTS_FILE = path.join(CACHE_DIR, "all-posts.json");
 
 // Ensure the cache directory exists, with error handling
 try {
@@ -29,7 +31,7 @@ try {
 } catch (error) {
   console.error(`Error creating cache directory: ${error.message}`);
   // Fallback to a different location if needed
-  if (isNetlify) {
+  if (isServerless) {
     console.log("Falling back to /tmp directory");
     CACHE_DIR = "/tmp";
     POSTS_FILE = path.join(CACHE_DIR, "all-posts.json");

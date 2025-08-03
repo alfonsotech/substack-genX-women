@@ -19,14 +19,17 @@ async function refreshFeeds() {
     }
 
     // Refresh feeds using the existing RSS service
+    console.log(`Starting refresh for ${philosophers.length} philosophers...`);
     const result = await rssService.refreshAllFeeds(philosophers);
+    console.log(`Refresh completed:`, result);
 
     return {
       success: true,
       message: "Feeds refreshed successfully",
       updated: result.updated,
       newContentFound: result.newContentFound,
-      newPosts: result.newPosts?.length || 0
+      newPosts: result.newPosts?.length || 0,
+      totalPhilosophers: philosophers.length
     };
   } catch (error) {
     console.error("Error refreshing feeds:", error);
