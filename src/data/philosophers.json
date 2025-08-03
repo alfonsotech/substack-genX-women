@@ -1,5 +1,19 @@
 [
   {
+    "id": "colleenkochannek",
+    "name": "Colleen Kochannek",
+    "publicationName": "3rd Act Field Notes",
+    "substackUrl": "https://colleenkochannek.substack.com",
+    "rssUrl": "https://colleenkochannek.substack.com/feed"
+  },
+  {
+    "id": "carrieloranger1",
+    "name": "Carrie Loranger",
+    "publicationName": "9-to-Thrive",
+    "substackUrl": "https://thrivewithcarrie.substack.com",
+    "rssUrl": "https://thrivewithcarrie.substack.com/feed"
+  },
+  {
     "id": "annieridout",
     "name": "Annie Ridout",
     "publicationName": "Annie Ridout",
@@ -7,25 +21,18 @@
     "rssUrl": "https://annieridout.substack.com/feed"
   },
   {
-    "id": "desireebrown2",
-    "name": "Desiree A Brown",
-    "publicationName": "The Second Bloom 🥀🌹",
-    "substackUrl": "https://desireeabrown.substack.com",
-    "rssUrl": "https://desireeabrown.substack.com/feed"
+    "id": "successcoachsa",
+    "name": "Eva M. Fernandez, LMSW",
+    "publicationName": "Compassionate Disruptor",
+    "substackUrl": "https://successcoachsa.substack.com",
+    "rssUrl": "https://successcoachsa.substack.com/feed"
   },
   {
-    "id": "drdionnemahaffey",
-    "name": "Dr. Dionne Mahaffey",
-    "publicationName": "In Session With Dr. Dionne",
-    "substackUrl": "https://drdionnemahaffey.substack.com",
-    "rssUrl": "https://drdionnemahaffey.substack.com/feed"
-  },
-  {
-    "id": "rentfreewithella",
-    "name": "Ella Thirsty",
-    "publicationName": "Rent Free with Ella",
-    "substackUrl": "https://ellathirsty.substack.com",
-    "rssUrl": "https://ellathirsty.substack.com/feed"
+    "id": "vanessanwright",
+    "name": "Vanessa Novissimo Wright",
+    "publicationName": "Flourish & Flow",
+    "substackUrl": "https://vanessanovissimowright.substack.com",
+    "rssUrl": "https://vanessanovissimowright.substack.com/feed"
   },
   {
     "id": "forevers",
@@ -54,6 +61,13 @@
     "publicationName": "Her Handmade Hustle",
     "substackUrl": "https://herhandmadehustle.substack.com",
     "rssUrl": "https://herhandmadehustle.substack.com/feed"
+  },
+  {
+    "id": "drdionnemahaffey",
+    "name": "Dr. Dionne Mahaffey",
+    "publicationName": "In Session With Dr. Dionne",
+    "substackUrl": "https://drdionnemahaffey.substack.com",
+    "rssUrl": "https://drdionnemahaffey.substack.com/feed"
   },
   {
     "id": "laidofflife",
@@ -105,18 +119,11 @@
     "rssUrl": "https://reinventionadventures.substack.com/feed"
   },
   {
-    "id": "serenamiraasta",
-    "name": "Serena Miraasta",
-    "publicationName": "Stress & Sensibility",
-    "substackUrl": "https://serenamiraasta.substack.com",
-    "rssUrl": "https://serenamiraasta.substack.com/feed"
-  },
-  {
-    "id": "sharonnewsom",
-    "name": "Sharon Newsom",
-    "publicationName": "The In-Between Edit",
-    "substackUrl": "https://sharonnewsom.substack.com",
-    "rssUrl": "https://sharonnewsom.substack.com/feed"
+    "id": "rentfreewithella",
+    "name": "Ella Thirsty",
+    "publicationName": "Rent Free with Ella",
+    "substackUrl": "https://ellathirsty.substack.com",
+    "rssUrl": "https://ellathirsty.substack.com/feed"
   },
   {
     "id": "smartissexy",
@@ -126,11 +133,11 @@
     "rssUrl": "https://smartissexy.substack.com/feed"
   },
   {
-    "id": "successcoachsa",
-    "name": "Eva M. Fernandez, LMSW",
-    "publicationName": "Compassionate Disruptor",
-    "substackUrl": "https://successcoachsa.substack.com",
-    "rssUrl": "https://successcoachsa.substack.com/feed"
+    "id": "serenamiraasta",
+    "name": "Serena Miraasta",
+    "publicationName": "Stress & Sensibility",
+    "substackUrl": "https://serenamiraasta.substack.com",
+    "rssUrl": "https://serenamiraasta.substack.com/feed"
   },
   {
     "id": "thegoodspace",
@@ -145,6 +152,13 @@
     "publicationName": "The Hyphen",
     "substackUrl": "https://thehyphen.substack.com",
     "rssUrl": "https://thehyphen.substack.com/feed"
+  },
+  {
+    "id": "sharonnewsom",
+    "name": "Sharon Newsom",
+    "publicationName": "The In-Between Edit",
+    "substackUrl": "https://sharonnewsom.substack.com",
+    "rssUrl": "https://sharonnewsom.substack.com/feed"
   },
   {
     "id": "daniellejwilkie",
@@ -168,25 +182,18 @@
     "rssUrl": "https://thepeoplescommunity.substack.com/feed"
   },
   {
+    "id": "desireebrown2",
+    "name": "Desiree A Brown",
+    "publicationName": "The Second Bloom 🥀🌹",
+    "substackUrl": "https://desireeabrown.substack.com",
+    "rssUrl": "https://desireeabrown.substack.com/feed"
+  },
+  {
     "id": "theshiftwithsambaker",
     "name": "Sam Baker",
     "publicationName": "The Shift with Sam Baker",
     "substackUrl": "https://theshiftwithsambaker.substack.com",
     "rssUrl": "https://theshiftwithsambaker.substack.com/feed"
-  },
-  {
-    "id": "carrieloranger1",
-    "name": "Carrie Loranger",
-    "publicationName": "9-to-Thrive",
-    "substackUrl": "https://thrivewithcarrie.substack.com",
-    "rssUrl": "https://thrivewithcarrie.substack.com/feed"
-  },
-  {
-    "id": "vanessanwright",
-    "name": "Vanessa Novissimo Wright",
-    "publicationName": "Flourish & Flow",
-    "substackUrl": "https://vanessanovissimowright.substack.com",
-    "rssUrl": "https://vanessanovissimowright.substack.com/feed"
   },
   {
     "id": "workmattersnow",
