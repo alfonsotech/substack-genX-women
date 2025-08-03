@@ -4,6 +4,28 @@ const path = require("path");
 
 async function refreshFeeds() {
   try {
+    // Test MongoDB connection first
+    console.log("Testing MongoDB connection...");
+    console.log("MONGODB_URI exists:", !!process.env.MONGODB_URI);
+    
+    try {
+      const { connectToDatabase } = require("../lib/mongodb");
+      const db = await connectToDatabase();
+      console.log("MongoDB connection successful!");
+      
+      // Test if we can read/write to the collection
+      const postsCollection = db.collection("posts");
+      const testCount = await postsCollection.countDocuments();
+      console.log(`Current posts in database: ${testCount}`);
+    } catch (dbError) {
+      console.error("MongoDB connection failed:", dbError);
+      return {
+        success: false,
+        error: "MongoDB connection failed",
+        message: dbError.message
+      };
+    }
+
     // Load philosophers data
     let philosophers = [];
     try {
@@ -19,18 +41,25 @@ async function refreshFeeds() {
     }
 
     // Refresh feeds using the existing RSS service
+    console.log(`Starting refresh for ${philosophers.length} philosophers...`);
     const result = await rssService.refreshAllFeeds(philosophers);
+    console.log(`Refresh completed:`, result);
 
     return {
       success: true,
       message: "Feeds refreshed successfully",
       updated: result.updated,
       newContentFound: result.newContentFound,
-      newPosts: result.newPosts?.length || 0
+      newPosts: result.newPosts?.length || 0,
+      totalPhilosophers: philosophers.length
     };
   } catch (error) {
     console.error("Error refreshing feeds:", error);
-    throw error;
+    return {
+      success: false,
+      error: "Failed to refresh feeds", 
+      message: error.message
+    };
   }
 }
 

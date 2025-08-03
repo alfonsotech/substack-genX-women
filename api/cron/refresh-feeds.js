@@ -4,6 +4,26 @@ const path = require("path");
 
 async function refreshFeeds() {
   try {
+    // Test MongoDB connection first
+    console.log("Testing MongoDB connection...");
+    try {
+      const { connectToDatabase } = require("../../lib/mongodb");
+      const db = await connectToDatabase();
+      console.log("MongoDB connection successful!");
+      
+      // Test if we can read/write to the collection
+      const postsCollection = db.collection("posts");
+      const testCount = await postsCollection.countDocuments();
+      console.log(`Current posts in database: ${testCount}`);
+    } catch (dbError) {
+      console.error("MongoDB connection failed:", dbError);
+      return {
+        success: false,
+        error: "MongoDB connection failed",
+        message: dbError.message
+      };
+    }
+
     // Load philosophers data
     let philosophers = [];
     try {
@@ -18,6 +38,11 @@ async function refreshFeeds() {
       throw new Error("Failed to load philosophers data");
     }
 
+    // Test fetching just one RSS feed first
+    console.log("Testing RSS fetch for first philosopher...");
+    const testPhilosopher = philosophers[0];
+    console.log(`Testing RSS feed: ${testPhilosopher.name} - ${testPhilosopher.rssUrl}`);
+    
     // Refresh feeds using the existing RSS service
     console.log(`Starting refresh for ${philosophers.length} philosophers...`);
     const result = await rssService.refreshAllFeeds(philosophers);
@@ -33,7 +58,11 @@ async function refreshFeeds() {
     };
   } catch (error) {
     console.error("Error refreshing feeds:", error);
-    throw error;
+    return {
+      success: false,
+      error: "Failed to refresh feeds",
+      message: error.message
+    };
   }
 }
 
