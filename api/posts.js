@@ -18,6 +18,20 @@ module.exports = async (req, res) => {
     // Get all posts from RSS service
     let allPosts = rssService.getAllPosts();
     
+    console.log(`Found ${allPosts.length} total posts`);
+    
+    // If no posts found, return empty result with helpful message
+    if (allPosts.length === 0) {
+      return res.status(200).json({
+        total: 0,
+        page: pageNum,
+        limit: limitNum,
+        posts: [],
+        hasMore: false,
+        message: "No posts found. Try refreshing feeds first."
+      });
+    }
+    
     // Apply search filter if provided
     if (search) {
       const searchRegex = new RegExp(search, "i");
