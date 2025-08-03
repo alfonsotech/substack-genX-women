@@ -147,10 +147,14 @@ async function savePosts(philosopherId, posts) {
 // Fetch feed for a philosopher
 async function fetchFeed(philosopher) {
   try {
-    console.log(`Fetching feed for ${philosopher.name}...`);
+    console.log(`Fetching feed for ${philosopher.name} from ${philosopher.rssUrl}...`);
     const feed = await parser.parseURL(philosopher.rssUrl);
 
     console.log(`Feed for ${philosopher.name} has ${feed.items.length} items`);
+    
+    if (feed.items.length > 0) {
+      console.log(`First item: ${feed.items[0].title} (${feed.items[0].pubDate})`);
+    }
 
     // Extract publication logo from feed
     let logoUrl = null;
@@ -231,36 +235,47 @@ async function refreshAllFeeds(philosophers) {
 
       // Check if we have new content
       if (posts.length > 0) {
-        const latestPostDate = new Date(posts[0].publishDate).getTime();
-        const previousLatestPostDate =
-          latestPostsTimestamps[philosopher.id] || 0;
+      console.log(`Processing ${posts.length} posts for ${philosopher.name}`);
+      const latestPostDate = new Date(posts[0].publishDate).getTime();
+      const previousLatestPostDate =
+            latestPostsTimestamps[philosopher.id] || 0;
 
-        if (latestPostDate > previousLatestPostDate) {
-          // We found new content!
-          newContentFound = true;
-          updatedFeeds++;
+      console.log(`Latest post date: ${new Date(latestPostDate)}, Previous: ${new Date(previousLatestPostDate)}`);
 
-          // Store the new posts that weren't there before
-          const newPostsFromThisFeed = posts.filter(
-            (post) =>
-              new Date(post.publishDate).getTime() > previousLatestPostDate
-          );
+      if (latestPostDate > previousLatestPostDate) {
+            // We found new content!
+      console.log(`New content found for ${philosopher.name}!`);
+      newContentFound = true;
+      updatedFeeds++;
 
-          newPosts.push(
-            ...newPostsFromThisFeed.map((post) => ({
-              ...post,
-              philosopherId: philosopher.id,
-              philosopherName: philosopher.name,
-            }))
-          );
+      // Store the new posts that weren't there before
+            const newPostsFromThisFeed = posts.filter(
+        (post) =>
+        new Date(post.publishDate).getTime() > previousLatestPostDate
+      );
+
+      console.log(`${newPostsFromThisFeed.length} new posts from ${philosopher.name}`);
+
+      newPosts.push(
+              ...newPostsFromThisFeed.map((post) => ({
+          ...post,
+          philosopherId: philosopher.id,
+            philosopherName: philosopher.name,
+              }))
+        );
 
           // Update our timestamp record
-          latestPostsTimestamps[philosopher.id] = latestPostDate;
-        }
+            latestPostsTimestamps[philosopher.id] = latestPostDate;
+          } else {
+            console.log(`No new content for ${philosopher.name} (latest: ${new Date(latestPostDate)} vs previous: ${new Date(previousLatestPostDate)})`);
+          }
 
-        // Save the posts to MongoDB
-        await savePosts(philosopher.id, posts);
-      }
+          // Save the posts to MongoDB
+          console.log(`Saving ${posts.length} posts to MongoDB for ${philosopher.name}`);
+          await savePosts(philosopher.id, posts);
+        } else {
+          console.log(`No posts found for ${philosopher.name}`);
+        }
     } catch (error) {
       console.error(`Error refreshing feed for ${philosopher.name}:`, error);
     }
