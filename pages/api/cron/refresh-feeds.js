@@ -1,4 +1,4 @@
-const rssService = require("../src/services/rssService");
+const rssService = require("../../../src/services/rssService");
 const fs = require("fs-extra");
 const path = require("path");
 
@@ -8,7 +8,7 @@ async function refreshFeeds() {
     let philosophers = [];
     try {
       philosophers = fs.readJsonSync(
-        path.join(__dirname, "../src/data/philosophers.json")
+        path.join(__dirname, "../../../src/data/philosophers.json")
       );
       console.log(
         `Loaded ${philosophers.length} philosophers from philosophers.json`
