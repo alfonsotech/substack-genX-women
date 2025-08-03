@@ -162,12 +162,21 @@ async function fetchFeed(philosopher) {
       logoUrl = feed.image.url;
       console.log(`Found logo for ${philosopher.name}: ${logoUrl}`);
 
-      // Store the logo URL for this philosopher
-      const logosDir = path.join(__dirname, "../data/logos");
-      fs.ensureDirSync(logosDir);
-      fs.writeJsonSync(path.join(logosDir, `${philosopher.id}.json`), {
-        logoUrl,
-      });
+      // Try to store the logo URL (skip if filesystem is read-only)
+      try {
+        const isServerless = process.env.NETLIFY === "true" || process.env.VERCEL === "1";
+        const logosDir = isServerless 
+          ? path.join("/tmp", "logos")
+          : path.join(__dirname, "../data/logos");
+        fs.ensureDirSync(logosDir);
+        fs.writeJsonSync(path.join(logosDir, `${philosopher.id}.json`), {
+          logoUrl,
+        });
+        console.log(`Saved logo for ${philosopher.name}`);
+      } catch (logoError) {
+        console.log(`Could not save logo for ${philosopher.name}, continuing without it:`, logoError.message);
+        // Don't throw - continue processing posts
+      }
     }
 
     // Map feed items to our simplified format
@@ -198,7 +207,10 @@ async function fetchFeed(philosopher) {
 
 // Get philosopher logo
 function getPhilosopherLogo(philosopherId) {
-  const logoFile = path.join(__dirname, `../data/logos/${philosopherId}.json`);
+  const isServerless = process.env.NETLIFY === "true" || process.env.VERCEL === "1";
+  const logoFile = isServerless
+    ? path.join("/tmp", "logos", `${philosopherId}.json`)
+    : path.join(__dirname, `../data/logos/${philosopherId}.json`);
 
   if (fs.existsSync(logoFile)) {
     try {
