@@ -24,8 +24,12 @@ class DatabaseService {
 
   async getPhilosophers() {
     try {
-      if (!this.db) await this.connect();
-      const philosophers = await this.db.collection("philosophers").find({}).toArray();
+      // Read philosophers from JSON file (they're not stored in MongoDB)
+      const fs = require("fs-extra");
+      const path = require("path");
+      const philosophers = fs.readJsonSync(
+        path.join(__dirname, "../data/philosophers.json")
+      );
       return philosophers;
     } catch (error) {
       console.error("Error fetching philosophers:", error);
