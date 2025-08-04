@@ -48,6 +48,13 @@
     "substackUrl": "https://substack.iprofessionalcoaching.com",
     "rssUrl": "https://substack.iprofessionalcoaching.com/feed"
   },
+    {
+    "id": "thefarosproject",
+    "name": "JL Friday",
+    "publicationName": "The Faros Project",
+    "substackUrl": "https://thefarosproject.substack.com",
+    "rssUrl": "https://thefarosproject.substack.com/feed"
+  },
   {
     "id": "vanessanwright",
     "name": "Vanessa Novissimo Wright",
@@ -208,6 +215,13 @@
     "publicationName": "The People's Community",
     "substackUrl": "https://thepeoplescommunity.substack.com",
     "rssUrl": "https://thepeoplescommunity.substack.com/feed"
+  },
+     {
+    "id": "realjfriday",
+    "name": "JL Friday",
+    "publicationName": "The Saving the World Strategy Guide",
+    "substackUrl": "https://realjfriday.substack.com/",
+    "rssUrl": "https://realjfriday.substack.com/feed"
   },
   {
     "id": "desireebrown2",
