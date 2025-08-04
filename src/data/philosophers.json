@@ -34,7 +34,14 @@
     "substackUrl": "https://successcoachsa.substack.com",
     "rssUrl": "https://successcoachsa.substack.com/feed"
   },
-    {
+  {
+    "id": "connectioning",
+    "name": "JL Friday",
+    "publicationName": "Connectioning",
+    "substackUrl": "https://connectioning.substack.com",
+    "rssUrl": "https://connectioning.substack.com/feed"
+  },
+  {
     "id": "iprofessionalcoaching",
     "name": "Margaret Williams, MS, ACC",
     "publicationName": "The Empowered Leader",
